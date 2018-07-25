@@ -1,0 +1,40 @@
+import ij.IJ; 		// calls imagej
+import ij.Prefs; 	// calls imagej settings
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+
+runtime = Runtime.getRuntime();
+System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+timepoint_flag = System.getProperty( "timepoint_flag" );
+channel_flag = System.getProperty( "channel_flag" );
+dir = System.getProperty( "dir" );
+
+Boolean timepoint_flag = Boolean.valueOf(timepoint_flag);
+Boolean channel_flag = Boolean.valueOf(channel_flag);
+
+System.out.println(timepoint_flag);
+System.out.println(channel_flag);
+
+new File(dir + "/converted").mkdirs(); // create converted directory if it does not exist
+
+paternString = "pattern_0=[Angles] pattern_1=[-- ignore this pattern --] pattern_2=[-- ignore this pattern --] pattern_3=[Tiles] ";
+
+if (timepoint_flag && channel_flag){
+	paternString = paternString + "pattern_4=[TimePoints]" + " pattern_5=[Channels]";
+} else if (timepoint_flag && !channel_flag){
+	paternString = paternString + "pattern_4=[TimePoints]";
+} else if (!timepoint_flag && channel_flag){
+paternString = paternString + "pattern_4=[Channels]";
+} else {}
+
+System.out.println(paternString);
+
+
+IJ.run("Define dataset ...", "define_dataset=[Automatic Loader (Bioformats based)] project_filename=[dataset.xml] path=[" + dir + "/*/*.tif] exclude=[10] "+ paternString + " modify_voxel_size? voxel_size_x=[1.0000] voxel_size_y=[1.0000] voxel_size_z=[5.8] voxel_size_unit=[pixels] move_tiles_to_grid_(per_angle)?=[Do not move Tiles to Grid (use Metadata if available)] how_to_load_images=[Load raw data] dataset_save_path=[" + dir + "/converted] ");
+
+
+/* shutdown */
+runtime.exit(0);
+
