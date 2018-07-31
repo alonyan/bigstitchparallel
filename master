@@ -1,18 +1,21 @@
 
-basedirfrom="/home/wollmanlab/RazorScopeData/RazorScopeImages"
-basedirto="/home/wollmanlab/RazorScopeData/RazorScopeSets"
+basedirfrom="/RazorScopeData/RazorScopeImages"
+basedirto="/RazorScopeData/RazorScopeSets"
 repodir="/home/wollmanlab/Documents/Repos/bigstitchparallel"
-
-
-pth="/Alon/SPIMTests/TestNewSetupAgain_2018May17/acq_4"
-
-
 
 xmljobs_export="/Processing/xmljobs" 
 hdf5jobs_export="/Processing/hdf5jobs" 
 conv_export="/converted"
+
+
+
+
+pth="/Jen/FetalImaging/p65_Timelapse_2018Jul23/acq_21"
  
-timepoints="1"
-channels="1"
-tiles="22"
-zAspect="3.81"
+timepoints="25"
+channels="2"
+tiles="4"
+angles="1"
+pos="1"
+
+zAspect="3"
