@@ -1,0 +1,28 @@
+import ij.IJ;
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+ 
+ 
+dirto = System.getProperty( "dir_to" );
+pth = System.getProperty( "pth" );
+
+timepoint = System.getProperty( "timepoint" );
+ 
+
+
+//activate cluster processing
+ 
+IJ.run("Toggle Cluster Processing", "display_cluster");
+
+
+
+IJ.run("Calculate pairwise shifts ...", "browse=" + dirto + pth + "/hdf5_dataset.xml "+ "select=" + dirto + pth + "/hdf5_dataset.xml" + " process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + timepoint + " method=Lucas-Kanade channels=[Average Channels] downsample_in_x=8 downsample_in_y=8 downsample_in_z=4");
+
+
+
+
+ 
+/* shutdown */
+System.exit(0);
