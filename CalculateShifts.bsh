@@ -31,4 +31,3 @@ IJ.run("Optimize globally and apply shifts ...", "select=[" + dirto + pth + "/hd
 
 /* shutdown */
 runtime.exit(0);
-
