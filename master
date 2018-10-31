@@ -5,6 +5,7 @@ repodir="/home/wollmanlab/Documents/Repos/bigstitchparallel"
 
 xmljobs_export="/Processing/xmljobs" 
 hdf5jobs_export="/Processing/hdf5jobs" 
+shiftjobs_export="/Processing/shiftjobs" 
 conv_export="/converted"
 
 

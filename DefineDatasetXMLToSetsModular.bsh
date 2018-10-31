@@ -35,7 +35,7 @@ String paternString = "";
 
 int i=0;
 if (angle_flag){
-	paternString = "pattern_" + String.valueOf(i) + "=[Angles]";
+	paternString = "pattern_" + String.valueOf(i) + "=[Angles] ";
 	i=i+1;
 } else {}
 paternString = paternString + "pattern_" + String.valueOf(i) + "=[-- ignore this pattern --] "+ "pattern_" + String.valueOf(i+1) + "=[-- ignore this pattern --] ";
