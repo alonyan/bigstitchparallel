@@ -1,0 +1,27 @@
+
+import ij.IJ; 		// calls imagej
+import ij.Prefs; 	// calls imagej settings
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+
+runtime = Runtime.getRuntime();
+System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+ timepoint = System.getProperty( "timepoint" );
+
+
+dirto = System.getProperty( "dir_to" );
+pth = System.getProperty( "pth" );
+
+
+System.out.println(dirto);
+
+
+
+IJ.run("ICP Refinement ...", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + timepoint + " icp_refinement_type=[Expert ...] interest_points=beads icp_maximum_error=2 transformation=Rigid group_channels=[Do not group]");
+
+
+
+/* shutdown */
+runtime.exit(0);
