@@ -1,6 +1,9 @@
 #!/bin/bash
- 
-source ./master
+
+dos2unix -n $1 /tmp/tmpmstr
+mv /tmp/tmpmstr $1
+
+source $1
 
 
 mkdir -p "$basedirfrom$pth$xmljobs_export"
@@ -33,7 +36,7 @@ fi
 job="$basedirfrom$pth$xmljobs_export/DefineXML.job"
 echo $job
 echo "#!/bin/bash" > "$job"
-echo "xvfb-run -a ImageJ -Ddir_from=$basedirfrom -Dpth=$pth -Dtimepoint_flag=$tptflg -Dchannel_flag=$chnflg -Dangle_flag=$tptflg -Dpos_flag=$posflg -Dtil_flag=$tilflg -DzAspect=$zAspect -- --no-splash $repodir/DefineDatasetXMLToSetsModular.bsh" >> "$job"
+echo "xvfb-run -a ImageJ -Ddir_from=$basedirfrom -Dpth=$pth -Dtimepoint_flag=$tptflg -Dchannel_flag=$chnflg -Dangle_flag=$tptflg -Dpos_flag=$posflg -Dtil_flag=$tilflg -DzAspect=$zAspect -- --no-splash $repodir/beanshellScripts/DefineDatasetXMLToSetsModular.bsh" >> "$job"
 
 
 chmod a+x "$job"

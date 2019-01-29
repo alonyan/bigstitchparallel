@@ -1,22 +1,22 @@
 #!/bin/bash
  
-source ./master
+source $1
  
 
-mkdir -p "$basedirfrom$pth$shiftjobs_export"
+mkdir -p "$basedirto$pth$beadsjobs_export"
 
  
-for i in `seq 0 $(($timepoints-1))`
-do
-    job="$basedirfrom$pth$shiftjobs_export/shift-$i.job"
+
+    job="$basedirto$pth$beadsjobs_export/findPoints.job"
     echo $job
     echo "#!/bin/bash" > "$job"
-    echo "xvfb-run -a ImageJ -Xmx24g -Dtimepoint=$i -Ddir_to=$basedirto -Dpth=$pth -- --no-splash $repodir/FindInterestPoints.bsh" >> "$job"
+    echo "xvfb-run -a ImageJ -Xmx24g -Ddir_to=$basedirto -Dpth=$pth -- --no-splash $repodir/beanshellScripts/FindInterestPoints.bsh" >> "$job"
     chmod a+x "$job"
-done
 
 
 
-cd "$basedirfrom$pth$shiftjobs_export"
+
+cd "$basedirto$pth$beadsjobs_export"
 ls -d $PWD/*.job > commands.txt
-
+echo "#!/bin/bash" > commands.sh
+ls -d $PWD/*.job >> commands.sh
