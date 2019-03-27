@@ -1,0 +1,22 @@
+
+import ij.IJ; 		// calls imagej
+import ij.Prefs; 	// calls imagej settings
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+
+runtime = Runtime.getRuntime();
+System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+
+
+dirto = System.getProperty( "dir_to" );
+pth = System.getProperty( "pth" );
+
+
+System.out.println(dirto);
+IJ.run("Merge Cluster Jobs", "directory=" + dirto + pth + " filename_contains=job_ filename_also_contains=.xml delete_xml's merged_xml=hdf5_dataset.xml");
+
+
+/* shutdown */
+runtime.exit(0);

@@ -7,6 +7,9 @@ import java.io.FilenameFilter;
 
 runtime = Runtime.getRuntime();
 System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+IJ.run("Toggle Cluster Processing", "display_cluster");
+IJ.run("Memory & Threads...", "parallel=3 run");
+
 timepoint = System.getProperty( "timepoint" );
 
 
@@ -18,7 +21,7 @@ System.out.println(dirto);
 
 
 
-IJ.run("Detect Interest Points for Registration", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[All Timepoints] type_of_interest_point_detection=Difference-of-Gaussian label_interest_points=beads subpixel_localization=[3-dimensional quadratic fit] interest_point_specification=[Advanced ...] downsample_xy=2x downsample_z=1x sigma=1.58000 threshold=0.01 find_maxima compute_on=[GPU approximate (Nvidia CUDA via JNA)] cuda_directory=/home/wollmanlab/Apps/Fiji.app select_native_library_for_cudaseparableconvolution=libSeparableConvolutionCUDALib.so device=[GPU 1 of 1: Quadro P2000 (id=0, mem=5057MB (5057MB free), CUDA capability 6.1)] percent_of_gpu_memory_to_use=90");
+IJ.run("Detect Interest Points for Registration", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + timepoint + "  type_of_interest_point_detection=Difference-of-Gaussian label_interest_points=beads subpixel_localization=[3-dimensional quadratic fit] interest_point_specification=[Advanced ...] downsample_xy=2x downsample_z=1x sigma=1.58000 threshold=0.01 find_maxima compute_on=[GPU approximate (Nvidia CUDA via JNA)] cuda_directory=/home/wollmanlab/Apps/Fiji.app select_native_library_for_cudaseparableconvolution=libSeparableConvolutionCUDALib.so device=[GPU 1 of 1: TITAN V (id=0, mem=12064MB (12064MB free), CUDA capability 7.0)] percent_of_gpu_memory_to_use=90");
 
 
 

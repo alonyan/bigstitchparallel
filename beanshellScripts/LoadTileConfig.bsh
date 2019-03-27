@@ -1,0 +1,25 @@
+import ij.IJ; 		// calls imagej
+import ij.Prefs; 	// calls imagej settings
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+
+runtime = Runtime.getRuntime();
+System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+
+
+dirto = System.getProperty( "dir_to" );
+pth = System.getProperty( "pth" );
+
+
+System.out.println(dirto);
+
+
+
+IJ.run("Load TileConfiguration from File...", "select=[" + dirto + pth + "/hdf5_dataset.xml] browse=[" + dirto + pth + "/TileConfiguration.txt] tileconfiguration=[" + dirto + pth + "/TileConfiguration.txt]");
+
+
+/* shutdown */
+runtime.exit(0);
+

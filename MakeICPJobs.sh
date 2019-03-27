@@ -22,3 +22,4 @@ cd "$basedirto$pth$ICPjobs_export"
 ls -trd $PWD/*.job > commands.txt
 echo "#!/bin/bash" > commands.sh
 ls -trd $PWD/*.job >> commands.sh
+chmod a+x ./commands.sh

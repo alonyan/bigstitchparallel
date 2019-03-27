@@ -8,7 +8,10 @@ import java.io.FilenameFilter;
 
 runtime = Runtime.getRuntime();
 System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
- timepoint = System.getProperty( "timepoint" );
+IJ.run("Toggle Cluster Processing", "display_cluster");
+IJ.run("Memory & Threads...", "parallel=3 run");
+
+timepoint = System.getProperty( "timepoint" );
 
 
 dirto = System.getProperty( "dir_to" );
@@ -19,7 +22,7 @@ System.out.println(dirto);
 
 
 
-IJ.run("ICP Refinement ...", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + timepoint + " icp_refinement_type=[Expert ...] interest_points=beads icp_maximum_error=5 transformation=Rigid regularize_model model_to_regularize_with=Translation lamba=0.10 group_channels=[Do not group] group_tiles");
+IJ.run("ICP Refinement ...", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + timepoint + " icp_refinement_type=[Expert ...] interest_points=beads icp_maximum_error=8 transformation=Rigid regularize_model model_to_regularize_with=Translation lamba=0.10 group_channels=[Do not group] group_tiles");
 
 
 

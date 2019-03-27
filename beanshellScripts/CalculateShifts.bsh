@@ -7,25 +7,28 @@ import java.io.FilenameFilter;
 
 runtime = Runtime.getRuntime();
 System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
-timepoint = System.getProperty( "timepoint" );
+IJ.run("Toggle Cluster Processing", "display_cluster");
+IJ.run("Memory & Threads...", "parallel=3 run");
 
+timepoint = System.getProperty( "timepoint" );
+fixPosStr = System.getProperty( "fixPosStr" );
 
 dirto = System.getProperty( "dir_to" );
 pth = System.getProperty( "pth" );
 
 
 System.out.println(dirto);
-
+System.out.println(fixPosStr);
 
 
 IJ.run("Calculate pairwise shifts ...", "browse=[" + dirto + pth + "/hdf5_dataset.xml] select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + timepoint + " method=[Phase Correlation]  channels=[use Channel 1] downsample_in_x=4 downsample_in_y=4 downsample_in_z=2");
 
 
-IJ.run("Filter pairwise shifts ...", "browse=[" + dirto + pth + "/hdf5_dataset.xml] select=[" + dirto + pth + "/hdf5_dataset.xml] filter_by_link_quality min_r=0.80 max_r=1 max_shift_in_x=0 max_shift_in_y=0 max_shift_in_z=0 max_displacement=0");
+/*IJ.run("Filter pairwise shifts ...", "browse=[" + dirto + pth + "/hdf5_dataset.xml] select=[" + dirto + pth + "/hdf5_dataset.xml] filter_by_link_quality min_r=0.70 max_r=1 max_shift_in_x=0 max_shift_in_y=0 max_shift_in_z=0 max_displacement=0");*/
 
 
 /* make starts of quadrants input parameters  ,,,,  fix_group_0-0 fix_group_0-9 fix_group_0-13 fix_group_0-22*/
-IJ.run("Optimize globally and apply shifts ...", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=[" + timepoint + "] relative=2.500 absolute=3.500 global_optimization_strategy=[Two-Round using Metadata to align unconnected Tiles]");
+/*IJ.run("Optimize globally and apply shifts ...", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=[" + timepoint + "] relative=2.500 absolute=3.500 global_optimization_strategy=[Two-Round using Metadata to align unconnected Tiles] " + fixPosStr);*/
 
 
 

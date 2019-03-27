@@ -15,6 +15,7 @@ do
     echo "xvfb-run -a ImageJ -Xmx160g -Dtimepoint="`seq -s ',' $i $b`" -Ddir_to=$basedirto -Dpth=$pth -- --no-splash $repodir/beanshellScripts/StabilizeTimepoints.bsh" >> "$job"
 
     chmod a+x "$job"
+    sleep .1
 done
 
 
@@ -22,3 +23,4 @@ cd "$basedirto$pth$Stabilizejobs_export"
 ls -trd $PWD/*.job > commands.txt
 echo "#!/bin/bash" > commands.sh
 ls -trd $PWD/*.job >> commands.sh
+chmod a+x ./commands.sh
