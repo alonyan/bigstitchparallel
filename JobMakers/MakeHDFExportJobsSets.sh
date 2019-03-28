@@ -1,4 +1,5 @@
 #!/bin/bash
+# This function creates the jobs that convert individual .TIFF stacks to their HDF5 target.
 
 dos2unix -n $1 /tmp/tmpmstr
 mv /tmp/tmpmstr $1
