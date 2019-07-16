@@ -9,7 +9,7 @@ runtime = Runtime.getRuntime();
 System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
 timepoint = System.getProperty( "timepoint" );
 channel = System.getProperty( "channel" );
-IJ.run("Memory & Threads...", "parallel=8 run");
+IJ.run("Memory & Threads...", "parallel=2 run");
 
 dirto = System.getProperty( "dir_to" );
 pth = System.getProperty( "pth" );
@@ -18,7 +18,7 @@ pth = System.getProperty( "pth" );
 System.out.println(dirto);
 
 
-IJ.run("Fuse dataset ...", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[Single channel (Select from List)] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] processing_channel=[channel " + channel + "] process_following_timepoints=" + timepoint + " bounding_box=[All Views] downsampling=6 pixel_type=[16-bit unsigned integer] interpolation=[Linear Interpolation] image=[Virtual] blend produce=[Each timepoint & channel] fused_image=[Save as (compressed) TIFF stacks] output_file_directory=[" + dirto + pth + "/Fused/]");
+IJ.run("Fuse dataset ...", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[Single channel (Select from List)] process_illumination=[All illuminations] process_tile=[Range of tiles (Specify by Name)] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_tiles=[0-41] processing_channel=[channel " + channel + "] process_following_timepoints=" + timepoint + " bounding_box=[All Views] downsampling=6 pixel_type=[16-bit unsigned integer] interpolation=[Linear Interpolation] image=[Virtual] blend produce=[Each timepoint & channel] fused_image=[Save as (compressed) TIFF stacks] output_file_directory=[" + dirto + pth + "/Fused/]");
 
 
 

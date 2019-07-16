@@ -1,5 +1,8 @@
 #!/bin/bash
 
+dos2unix -n $1 /tmp/tmpmstr
+mv /tmp/tmpmstr $1
+
 source $1
 
 #Calculate shifts
@@ -12,4 +15,4 @@ parallel --memfree -24G --load 90% --delay 5 -j8 --retry-failed < $basedirto$pth
 
 #Merge the files created by different processes.
 $repodir/JobMakers/MakeMergeXMLJob.sh $1
-$basedirto$pth/Processing/MergeXMLs.sh
+$basedirto$pth/Processing/MergeXMLs.job

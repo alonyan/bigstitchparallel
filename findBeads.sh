@@ -8,5 +8,5 @@ parallel --memfree -24G --load 90% --delay 5 -j12 --retry-failed < $basedirto$pt
 
 
 #Merge the files created by different processes.
-$basedirto$pth/Processing/MergeXMLs.sh
+$basedirto$pth/Processing/MergeXMLs.job
 

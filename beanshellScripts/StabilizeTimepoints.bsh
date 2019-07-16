@@ -10,6 +10,8 @@ import java.util.Arrays;
 
 runtime = Runtime.getRuntime();
 System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+IJ.run("Toggle Cluster Processing", "display_cluster");
+IJ.run("Memory & Threads...", "parallel=4 run");
 
 dirto = System.getProperty( "dir_to" );
 pth = System.getProperty( "pth" );
@@ -24,11 +26,11 @@ tpbefore = timepoint-1;
 int maxTimepoint = Integer.parseInt(maxTimepoint)-1;*/
 
 
-
+System.out.println(dirto + pth + "/hdf5_dataset_"+ timepoint +".xml");
 System.out.println(timepoint);
 
 /* Stabilize between timepoints*/ 
-IJ.run("Register Dataset based on Interest Points", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + tpbefore + "," + timepoint +" registration_algorithm=[Fast descriptor-based (translation invariant)] registration_over_time=[Match against one reference timepoint (no global optimization)] registration_in_between_views=[Only compare overlapping views (according to current transformations)] interest_points=beads group_tiles reference=" + tpbefore + " consider_each_timepoint_as_rigid_unit transformation=Rigid redundancy=1 significance=10 allowed_error_for_ransac=5 inlier_factor=3 ransac_iterations=Fast interestpoint_grouping=[Do not group interest points, compute views independently] interest=5");
+IJ.run("Register Dataset based on Interest Points", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + tpbefore + "," + timepoint +" registration_algorithm=[Fast descriptor-based (translation invariant)] registration_over_time=[Match against one reference timepoint (no global optimization)] registration_in_between_views=[Only compare overlapping views (according to current transformations)] interest_points=beads group_tiles group_channels reference=" + tpbefore + " consider_each_timepoint_as_rigid_unit transformation=Rigid redundancy=1 significance=10 allowed_error_for_ransac=5 inlier_factor=3 ransac_iterations=Fast interestpoint_grouping=[Do not group interest points, compute views independently] interest=5");
 
 
 

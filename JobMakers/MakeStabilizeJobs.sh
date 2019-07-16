@@ -8,6 +8,8 @@ mkdir -p "$basedirto$pth$Stabilizejobs_export"
  
 for i in `seq 1 1 $(($timepoints-1))`
 do
+    #cp "$basedirto$pth/hdf5_dataset.xml" "$basedirto$pth/hdf5_dataset.job_$i.xml"
+
     job="$basedirto$pth$Stabilizejobs_export/StabilizeTP-$i.job"
     echo $job
     echo "#!/bin/bash" > "$job"
@@ -15,7 +17,7 @@ do
     echo "xvfb-run -a ImageJ -Xmx160g -Dtimepoint="`seq -s ',' $i $b`" -Ddir_to=$basedirto -Dpth=$pth -- --no-splash $repodir/beanshellScripts/StabilizeTimepoints.bsh" >> "$job"
 
     chmod a+x "$job"
-    sleep .1
+    sleep .01
 done
 
 
