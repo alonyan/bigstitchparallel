@@ -1,0 +1,5 @@
+At frame 0:
+- change channel 1 color to (200, 0, 0)
+- change background color to (255,255,255)
+- rotate by 220 degrees around (0, 1, 0)
+

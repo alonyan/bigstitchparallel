@@ -1,0 +1,43 @@
+
+import ij.IJ; 		// calls imagej
+import ij.Prefs; 	// calls imagej settings
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.stream.IntStream;
+import java.util.Arrays;
+
+runtime = Runtime.getRuntime();
+System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+
+dirto = System.getProperty( "dir_to" );
+pth = System.getProperty( "pth" );
+System.out.println(dirto);
+
+/* IJ.run("Toggle Cluster Processing", "display_cluster");*/
+/* IJ.run("Memory & Threads...", "parallel=3 run");*/
+
+maxTimepoint = System.getProperty( "maxtimepoint" );
+int maxTimepoint = Integer.parseInt(maxTimepoint)-1;
+
+timepoint = System.getProperty( "timepoint" );
+int timepoint = Integer.parseInt(timepoint);
+
+
+/* run over all timepoints from 1 to the last one. We assume TP0 has been registered and varified manually*/
+
+/*for (int timepoint=1 ; timepoint <= maxTimepoint ;  timepoint++){*/
+
+System.out.println(timepoint);
+
+/*tpbefore = timepoint-1;*/
+
+int[] tpRange = IntStream.rangeClosed(timepoint, maxTimepoint).toArray();
+
+/* first, duplicate the last transformation of the last time point to all timepoints ("drift correct")*/ 
+
+IJ.run("Duplicate Transformations", "apply=[One timepoint to other timepoints] select=[" + dirto + pth + "/hdf5_dataset.xml] apply_to_angle=[All angles] apply_to_channel=[All channels] apply_to_illumination=[All illuminations] apply_to_tile=[All tiles] source=0 target=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + Arrays.toString(tpRange) + " duplicate_which_transformations=[Add last transformation only]");
+
+/* shutdown */
+runtime.exit(0);

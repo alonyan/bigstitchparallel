@@ -13,8 +13,8 @@ do
     job="$basedirto$pth$Stabilizejobs_export/StabilizeTP-$i.job"
     echo $job
     echo "#!/bin/bash" > "$job"
-    b=$(($timepoints<(($i))?$timepoints:(($i)) ))
-    echo "xvfb-run -a ImageJ -Xmx160g -Dtimepoint="`seq -s ',' $i $b`" -Ddir_to=$basedirto -Dpth=$pth -- --no-splash $repodir/beanshellScripts/StabilizeTimepoints.bsh" >> "$job"
+    b=$(($timepoints<(($i+0))?$timepoints:(($i+0)) ))
+    echo "xvfb-run -a ImageJ -Xmx160g -Dtimepoint=`seq -s ',' $i $b` -Ddir_to=$basedirto -Dpth=$pth -- --no-splash $repodir/beanshellScripts/StabilizeTimepoints.bsh" >> "$job"
 
     chmod a+x "$job"
     sleep .01

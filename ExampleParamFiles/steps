@@ -1,0 +1,43 @@
+As soon as anything appears on the analysis machine, Open terminal window and run:
+
+/home/wollmanlab/Documents/Repos/bigstitchparallel/OTFConvertToHDF5.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+
+This will take some time, so go rest and do some productive things.
+
+Once this is done, the dataset is saved in HDF5 format.
+
+
+Open the set using BigStitcher to make sure everything is fine and delete the Tiffs. Time to start aligning!
+
+First, we need to move the tiles to their location from the Tile Configuration File.
+/home/wollmanlab/Documents/Repos/bigstitchparallel/loadTileConfig.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+
+Next, we stitch tiles using cross-correlation.
+/home/wollmanlab/Documents/Repos/bigstitchparallel/stitchTiles.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+
+Find interest points for the next steps.
+/home/wollmanlab/Documents/Repos/bigstitchparallel/findBeads.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+
+Since we have more than 1 channel, we want to fix some "chromatic aberations".
+
+/home/wollmanlab/Documents/Repos/bigstitchparallel/fixChromaticAbberations.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+
+At this point, we`ve finished stitching all the tiles together. We still need to stitch the different angles.
+Open Fiji and open the set with BigStitcher. Make sure that tile registration looks ok.
+Now, align the first timepoint using the BDV GUI. Make sure everything looks right.
+save and close Fiji.
+
+We align iteratively by inhereting all the previous transformations.
+
+/home/wollmanlab/Documents/Repos/bigstitchparallel/MultiviewReconstruct.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+
+Fix drift.
+
+/home/wollmanlab/Documents/Repos/bigstitchparallel/driftCorrection.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+
+/home/wollmanlab/Documents/Repos/bigstitchparallel/finalRefinement.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+
+Finally, fuse dataset.
+
+/home/wollmanlab/Documents/Repos/bigstitchparallel/Fuse.sh "/RazorScopeData/RazorScopeImages/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1/Processing/master"
+

@@ -1,0 +1,27 @@
+basedirfrom="/RazorScopeData/RazorScopeImages"
+basedirto="/RazorScopeData/RazorScopeSets"
+repodir="/home/wollmanlab/Documents/Repos/bigstitchparallel"
+
+xmljobs_export="/Processing/xmljobs"
+hdf5jobs_export="/Processing/hdf5jobs"
+shiftjobs_export="/Processing/shiftjobs"
+optjobs_export="/Processing/optjobs"
+beadsjobs_export="/Processing/beadsjobs"
+ICPjobs_export="/Processing/ICPjobs"
+Multiviewjobs_export="/Processing/multiviewjobs"
+Stabilizejobs_export="/Processing/stabilizejobs"
+Finalrefinejobs_export="/Processing/finalrefinejobs"
+fusejobs_export="/Processing/fusejobs"
+fused_dir="/Fused"
+
+pth="/Zach/CorneaHSV/Infection72HwithTNF_2019Jun28/acq_1"
+
+timepoints="73"
+channels="3"
+tiles="36"
+angles="2"
+pos="1"
+
+fixPos="18 0"
+
+zAspect="3.94"

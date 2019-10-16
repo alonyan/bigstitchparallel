@@ -1,0 +1,45 @@
+
+import ij.IJ; 		// calls imagej
+import ij.Prefs; 	// calls imagej settings
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.stream.IntStream;
+import java.util.Arrays;
+
+runtime = Runtime.getRuntime();
+System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+
+dirto = System.getProperty( "dir_to" );
+pth = System.getProperty( "pth" );
+System.out.println(dirto);
+
+maxTimepoint = System.getProperty( "maxtimepoint" );
+int maxTimepoint = Integer.parseInt(maxTimepoint)-1;
+
+
+
+
+/* run over all timepoints from 1 to the last one. We assume TP0 has been registered and varified manually*/
+
+for (int timepoint=1 ; timepoint <= maxTimepoint ;  timepoint++){
+System.out.println(timepoint);
+
+tpbefore = timepoint-1;
+
+int[] tpRange = IntStream.rangeClosed(timepoint, maxTimepoint).toArray();
+
+/* first, duplicate the last transformation of the last time point to all timepoints ("drift correct")*/ 
+
+IJ.run("Duplicate Transformations", "apply=[One timepoint to other timepoints] select=[" + dirto + pth + "/hdf5_dataset.xml] apply_to_angle=[All angles] apply_to_channel=[All channels] apply_to_illumination=[All illuminations] apply_to_tile=[All tiles] source="+ tpbefore +" target=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + Arrays.toString(tpRange) + " duplicate_which_transformations=[Add last transformation only]");
+
+/* Then, register the next timepoint*/ 
+
+IJ.run("Register Dataset based on Interest Points", "select=[" + dirto + pth + "/hdf5_dataset.xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + timepoint +" registration_algorithm=[Fast descriptor-based (translation invariant)] registration_in_between_views=[Only compare overlapping views (according to current transformations)] interest_points=beads group_tiles group_channels fix_views=[Fix first view] map_back_views=[Do not map back (use this if views are fixed)] transformation=Rigid redundancy=1 significance=10 allowed_error_for_ransac=5 inlier_factor=3 ransac_iterations=Thorough interestpoint_grouping=[Do not group interest points, compute views independently] interest=5"); 
+
+}
+
+
+/* shutdown */
+runtime.exit(0);

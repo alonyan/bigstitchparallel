@@ -1,0 +1,40 @@
+
+import ij.IJ; 		// calls imagej
+import ij.Prefs; 	// calls imagej settings
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.stream.IntStream;
+import java.util.Arrays;
+
+runtime = Runtime.getRuntime();
+System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+IJ.run("Toggle Cluster Processing", "display_cluster");
+IJ.run("Memory & Threads...", "parallel=4 run");
+
+
+dirto = System.getProperty( "dir_to" );
+pth = System.getProperty( "pth" );
+System.out.println(dirto);
+
+timepoint = System.getProperty( "timepoint" );
+int timepoint = Integer.parseInt(timepoint);
+tpbefore = 0;
+
+
+/* maxTimepoint = System.getProperty( "maxtimepoint" );
+int maxTimepoint = Integer.parseInt(maxTimepoint)-1;*/
+
+
+
+System.out.println(timepoint);
+
+/* Stabilize between timepoints*/ 
+IJ.run("Register Dataset based on Interest Points", "select=[" + dirto + pth + "/hdf5_dataset.job_"+ timepoint +".xml] process_angle=[All angles] process_channel=[All channels] process_illumination=[All illuminations] process_tile=[All tiles] process_timepoint=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + tpbefore + "," + timepoint +" registration_algorithm=[Fast descriptor-based (rotation invariant)] registration_over_time=[Match against one reference timepoint (no global optimization)] registration_in_between_views=[Only compare overlapping views (according to current transformations)] interest_points=beads group_tiles reference=" + tpbefore + " transformation=Affine regularize_model model_to_regularize_with=Rigid lamba=0.20 redundancy=1 significance=10 allowed_error_for_ransac=5 inlier_factor=3 ransac_iterations=Fast interestpoint_grouping=[Do not group interest points, compute views independently] interest=5");
+
+
+
+
+/* shutdown */
+runtime.exit(0);

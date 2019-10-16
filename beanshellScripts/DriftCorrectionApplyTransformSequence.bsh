@@ -1,0 +1,38 @@
+
+import ij.IJ; 		// calls imagej
+import ij.Prefs; 	// calls imagej settings
+import ij.ImagePlus;
+import java.lang.Runtime;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.stream.IntStream;
+import java.util.Arrays;
+
+runtime = Runtime.getRuntime();
+System.out.println(runtime.availableProcessors() + " cores available for multi-threading");
+
+dirto = System.getProperty( "dir_to" );
+pth = System.getProperty( "pth" );
+System.out.println(dirto);
+
+maxTimepoint = System.getProperty( "maxtimepoint" );
+int maxTimepoint = Integer.parseInt(maxTimepoint)-1;
+
+
+/* run over all timepoints from last one - 1 to the first. We assume TP0 has been registered and varified manually*/
+
+for (int timepoint=maxTimepoint ; timepoint > 1 ;  timepoint--){
+
+System.out.println(timepoint);
+
+tpbefore = timepoint-1;
+
+int[] tpRange = IntStream.rangeClosed(timepoint, maxTimepoint).toArray();
+
+/* first, duplicate the last transformation of the last time point to all timepoints ("drift correct")*/ 
+
+IJ.run("Duplicate Transformations", "apply=[One timepoint to other timepoints] select=[" + dirto + pth + "/hdf5_dataset.xml] apply_to_angle=[All angles] apply_to_channel=[All channels] apply_to_illumination=[All illuminations] apply_to_tile=[All tiles] source=" + tpbefore + " target=[Range of Timepoints (Specify by Name)] process_following_timepoints=" + Arrays.toString(tpRange) + " duplicate_which_transformations=[Add last transformation only]");
+
+}
+/* shutdown */
+runtime.exit(0);
