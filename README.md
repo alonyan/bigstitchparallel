@@ -1,8 +1,9 @@
-# Big Stitcher Parallelize
+# Big Stitcher Parallel
 ## These are functions and routines developed by Alon Oyler-Yaniv at the Wollman Lab at UCLA to streamline the processing of large, live, lightsheet datasets.
-## The pipeline is implemented in bash and is heavily dependent on [ImageJ](https://imagej.net/Welcome) and [Big Stitcher](https://imagej.net/BigStitcher).
 
-### These functions work in tandem with the data acquisition software [https://github.com/wollmanlab/Scope](https://github.com/wollmanlab/Scope) which automatically generates the parameters needed for processing.
+The pipeline is implemented in bash and is heavily dependent on [ImageJ](https://imagej.net/Welcome) and [Big Stitcher](https://imagej.net/BigStitcher).
+
+These functions work in tandem with the data acquisition software [https://github.com/wollmanlab/Scope](https://github.com/wollmanlab/Scope) which automatically generates the parameters needed for processing.
 
 #### To setup an analysis station follow these steps:
 Start with a workstation running Ubuntu with a CUDA GPU
