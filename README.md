@@ -1,5 +1,5 @@
 # Big Stitcher Parallel
-## These are functions and routines developed by Alon Oyler-Yaniv at the Wollman Lab at UCLA to streamline the processing of large, live, lightsheet datasets.
+### These are functions and routines developed by Alon Oyler-Yaniv at the Wollman Lab at UCLA to streamline the processing of large, live, lightsheet datasets.
 
 The pipeline is implemented in bash and is heavily dependent on [ImageJ](https://imagej.net/Welcome) and [Big Stitcher](https://imagej.net/BigStitcher).
 
