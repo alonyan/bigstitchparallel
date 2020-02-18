@@ -23,9 +23,9 @@ IJ.run("As HDF5 ...", "select=["+ dirfrom + pth +"/Processing//dataset.xml]" +
 	"resave_channel=[All channels]" +  
 	"resave_illumination=[All illuminations]" + 
 	"resave_tile=[All tiles]" + 
-	"resave_timepoint=[All timepoints]" + 
+	"resave_timepoint=[All Timepoints]" + 
 
-	"subsampling_factors=[{ {1,1,1}, {2,2,1}, {4,4,1}, {8,8,2}, {16,16,4} }]" + 
+	"subsampling_factors=[{ {1,1,1}, {2,2,1}, {4,4,1}, {8,8,2}, {16,16,4} }] " + 
 	"hdf5_chunk_sizes=[{ {32,32,4}, {32,32,4}, {16,16,16}, {16,16,16}, {16,16,16} }]" + 
 	" split_hdf5 timepoints_per_partition=[1] setups_per_partition=[1] use_deflate_compression " + 
 	"run_only_job_number=[" + job_number + "]" +	

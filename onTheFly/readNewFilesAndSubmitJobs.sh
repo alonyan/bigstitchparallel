@@ -21,7 +21,7 @@ fullQueName=$dirName$hdfJobsFolder$hdfQueFile
 
 #Make empty queue file and start tailing. Add any new line to the queue for parallel execution
 true > $fullQueName
-tail -n+0 -f $fullQueName | parallel --memfree -24G --load 90% --delay 10 -j12 --retry-failed -E $QUEUE_END &
+tail -n+0 -f $fullQueName | parallel --memfree -24G --load 90% --delay 10 -j8 --retry-failed -E $QUEUE_END &
 
 tailprocess=`ps ax | grep -v grep | grep "tail -n+0 -f $fullQueName" | awk '{print $1}'`
 

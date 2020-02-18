@@ -14,7 +14,7 @@ do
 	    job="$basedirto$pth$fusejobs_export/fuse-$(($channels*$i+$j)).job"
 	    echo $job
 	    echo "#!/bin/bash" > "$job"
-	    echo "xvfb-run -a ImageJ -Xmx24g -Dtimepoint=$i -Dchannel=$j -Ddir_to=$basedirto -Dpth=$pth -- --no-splash $repodir/beanshellScripts/fuseTimepoint.bsh" >> "$job"
+	    echo "xvfb-run -a ImageJ -Xmx60g -Dtimepoint=$i -Dchannel=$j -Ddir_to=$basedirto -Dpth=$pth -- --no-splash $repodir/beanshellScripts/fuseTimepoint.bsh" >> "$job"
 	    chmod a+x "$job"
 	done
 done
